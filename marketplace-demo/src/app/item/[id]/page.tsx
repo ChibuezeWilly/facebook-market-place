@@ -26,8 +26,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
   const setEmail = useStore((state) => state.setEmail);
   const message = useStore((state) => state.message);
   const setMessage = useStore((state) => state.setMessage);
-  const category = useStore((state) => state.category);
-  const setCategory = useStore((state) => state.setCategory);
 
   // Fetch listing data from API
   useEffect(() => {

@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 
-import type { Metadata } from "next";
-
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
@@ -42,16 +40,6 @@ const categories = [
   "Toys & Games",
   "Buy and sell groups",
 ];
-
-type MobileNavbarProps = {
-  closeMobileNavbar: () => void;
-
-  categories: string[];
-
-  category: string;
-
-  setCategory: (v: string) => void;
-};
 
 export default function RootLayout({
   children,

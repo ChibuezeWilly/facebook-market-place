@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Sidebar from '@/components/ui/layout/sidebar'
 const categories = [
@@ -34,11 +34,7 @@ type Listing = {
 };
 
 export default function ElectronicsCategoryPage() {
-  const [listings, setListings] = useState<Listing[]>([]);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("Electronics");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [category, setCategory] = React.useState("Electronics");
 
   const items = Array.from({ length: 12 }).map((_, i) => ({
     id: i + 1,
@@ -62,9 +58,6 @@ export default function ElectronicsCategoryPage() {
             <h2 className="text-2xl text-black font-bold mb-6">
               Electronics
             </h2>
-            {error && (
-              <div className="text-center py-4 text-red-500">{error}</div>
-            )}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 place-items-center ">
               {items.map((listing) => (
                 <Link
@@ -93,11 +86,6 @@ export default function ElectronicsCategoryPage() {
                 </Link>
               ))}
             </div>
-            {/* {loading ? (
-              <div className="text-center py-20 text-gray-400">Loading...</div>
-            ) : (
-              
-            )} */}
           </main>
         </div>
       </div>

@@ -58,11 +58,8 @@ export default function MarketplaceHome() {
       });
   }, []);
 
-  const filtered = (listings || []).filter(
-    (l) =>
-      (l.title || "").toLowerCase().includes(search.toLowerCase()) ||
-      (l.description || "").toLowerCase().includes(search.toLowerCase())
-  );
+  // Remove search filtering, just show all listings
+  const filtered = listings;
 
   return (
     <div className="font-[var(--font-geist-sans)] ">
