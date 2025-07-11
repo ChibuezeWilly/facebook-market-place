@@ -21,7 +21,7 @@ export async function fetchListings(params?: Record<string, string>) {
 }
 
 // ✅ 3️⃣ Create a new listing
-export async function createListing(data: any) {
+export async function createListing(data: Record<string, unknown>) {
   const { data: result, error } = await supabase
     .from('listings')
     .insert([data])

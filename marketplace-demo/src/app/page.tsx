@@ -35,16 +35,8 @@ type Listing = {
   location?: string;
 };
 
-type MobileNavbarProps = {
-  closeMobileNavbar: () => void;
-  categories: string[];
-  category: string;
-  setCategory: (v: string) => void;
-};
-
 export default function MarketplaceHome() {
   const [listings, setListings] = useState<Listing[]>([]);
-  const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -8,14 +8,12 @@ type MobileNavbarProps = {
   categories: string[];
   category: string;
   setCategory: (v: string) => void;
-  setShowMobileNavbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export default function MobileNavbar({
   closeMobileNavbar,
   categories,
   category,
   setCategory,
-  setShowMobileNavbar,
 }: MobileNavbarProps) {
   return (
     <nav className="fixed inset-0 z-50 bg-white flex flex-col p-4 z-50">
