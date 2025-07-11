@@ -70,7 +70,7 @@ export default function MarketplaceHome() {
           setCategory={setCategory}
         />
         <main className="flex flex-col md:ml-64">
-          <h2 className="text-2xl text-black font-bold mb-6">Today's picks</h2>
+          <h2 className="text-2xl text-black font-bold mb-6">Today&apos;s picks</h2>
           {error && (
             <div className="text-center py-4 text-red-500">{error}</div>
           )}
