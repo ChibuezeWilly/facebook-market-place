@@ -24,15 +24,6 @@ const categories = [
   "Buy and sell groups",
 ];
 
-type Listing = {
-  id: string | number;
-  title: string;
-  description: string;
-  price: number | string;
-  image_url?: string;
-  location?: string;
-};
-
 export default function ElectronicsCategoryPage() {
   const [category, setCategory] = React.useState("Electronics");
 

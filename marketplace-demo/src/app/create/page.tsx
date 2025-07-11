@@ -49,12 +49,6 @@ const categories = [
   "Buy and sell groups",
 ];
 
-type MobileNavbarProps = {
-  closeMobileNavbar: () => void;
-  categories: string[];
-  category: string;
-  setCategory: (v: string) => void;
-};
 
 export default function CreateListingType() {
   const [category, setCategory] = useState("");
