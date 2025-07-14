@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useStore } from '@/store/useStore';
 import { fetchListingById, sendMessage } from '@/lib/api';
 
@@ -16,6 +18,7 @@ type Listing = {
 
 export default function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
+  const router = useRouter();
   const [item, setItem] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +60,11 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
       });
       setSent(true);
       setMessage(''); // Clear message after sending
+      
+      // Navigate back to marketplace after 2 seconds
+      setTimeout(() => {
+        router.push('/');
+      }, 2000);
     } catch (err) {
       setError('Failed to send message. Please try again.');
       console.error('Error sending message:', err);
@@ -93,7 +101,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
       </Link>
       <div className="flex flex-col md:flex-row gap-8 ">
         <div className="flex-1 flex items-center justify-center h-screen">
-          <img src={item.image_url || "https://placehold.co/600x400/EEE/CCC?text=Item"} alt={item.title} className="rounded-lg w-full max-w-3xl object-contain bg-gray-100 h-full" />
+          <Image src={item.image_url || "https://placehold.co/600x400/EEE/CCC?text=Item"} alt={item.title} className="rounded-lg w-full max-w-3xl object-contain bg-gray-100 h-full" width={600} height={400} />
         </div>
         <div className="flex w-80 flex flex-col">
           <label className="font-bold mb-1" htmlFor="item-title">Item Name</label>
@@ -136,7 +144,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 {sending ? 'Sending...' : 'Send'}
               </button>
             ) : (
-              <div className="bg-green-200 font-semibold rounded py-2 px-3 mt-2 text-black">
+              <div className="bg-green-200 text-green-700 font-semibold rounded py-2 px-3 mt-2">
                 Message sent successfully, the seller will receive an email notification
               </div>
             )}

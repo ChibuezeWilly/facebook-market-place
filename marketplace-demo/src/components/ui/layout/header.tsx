@@ -54,7 +54,6 @@ export default function Header({
           categories={categories}
           category={category}
           setCategory={setCategory}
-          setShowMobileNavbar={setShowMobileNavbar}
         />
       )}
     </>

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { NextRequest, NextResponse } from 'next/server';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -6,10 +7,11 @@ const supabase = createClient(
 );
 
 export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> } // ✅ Next.js 15: params is Promise
 ) {
-  const { id } = params;
+  const { id } = await params; // ✅ Must await it!
+
   const { data, error } = await supabase
     .from('listings')
     .select('*')
@@ -17,8 +19,8 @@ export async function GET(
     .single();
 
   if (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  
-  return new Response(JSON.stringify(data), { status: 200 });
+
+  return NextResponse.json(data);
 }

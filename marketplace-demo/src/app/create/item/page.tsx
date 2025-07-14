@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Camera } from "lucide-react";
+import Image from "next/image";
 import { useStore } from '@/store/useStore';
 import { createListing, uploadImage } from '@/lib/api';
 import { useRouter } from 'next/navigation';
@@ -78,14 +79,10 @@ export default function CreateItem() {
         location: "Palo Alto, CA", // You can make this dynamic later
       };
 
-      const result = await createListing(listingData);
+      await createListing(listingData);
       
-      // Redirect to the new listing or show success
-      if (result && result.id) {
-        router.push(`/item/${result.id}`);
-      } else {
-        router.push('/');
-      }
+      // Redirect to the home page after successful creation
+      router.push('/');
     } catch (err) {
       setError('Failed to create listing. Please try again.');
       console.error('Error creating listing:', err);
@@ -115,10 +112,12 @@ export default function CreateItem() {
               required
             />
             {preview ? (
-              <img
+              <Image
                 src={preview}
                 alt="Preview"
                 className="h-full object-contain"
+                width={144}
+                height={144}
               />
             ) : (
               <span className="flex flex-col items-center text-gray-400">
@@ -197,10 +196,12 @@ export default function CreateItem() {
         <div className="bg-white rounded-lg shadow p-6">
           <div className="h-96 bg-gray-100 rounded mb-4 flex items-center justify-center">
             {preview ? (
-              <img
+              <Image
                 src={preview}
                 alt="Preview"
                 className="h-full object-contain"
+                width={384}
+                height={384}
               />
             ) : (
               <span className="text-gray-400">Image preview</span>

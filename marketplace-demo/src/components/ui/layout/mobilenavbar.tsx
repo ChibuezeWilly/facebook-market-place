@@ -30,15 +30,15 @@ export default function MobileNavbar({
       <section className="mb-6 cursor-pointer">
         <h2 className="font-bold text-lg mb-2">Create new listing</h2>
         <ul className="flex flex-col gap-3">
-          <Link className="text-sm flex flex-row gap-4" href={"/create"}>
+          <Link className="text-sm flex flex-row gap-4" href={"/create"} onClick={ closeMobileNavbar}>
             <Tags className="w-5 h-6 " />
             <span>Choose listing type</span>
           </Link>
-          <Link className="text-sm flex flex-row gap-4" href={"/"} >
+          <Link className="text-sm flex flex-row gap-4" href={"/"} onClick={ closeMobileNavbar}>
             <Tags className="w-5 h-6 " />
             <span>Your listing</span>
           </Link>
-          <Link className="text-sm flex flex-row gap-4" href={""}>
+          <Link className="text-sm flex flex-row gap-4" href={""} onClick={ closeMobileNavbar}>
             <User className="w-5 h-6 " />
             <span>Seller help</span>
           </Link>
@@ -51,7 +51,8 @@ export default function MobileNavbar({
         <ul className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <li key={cat} className="w-1/2 sm:w-1/3">
-              <button
+              <Link
+                href={`/category/${cat.toLowerCase()}`}
                 className={`block w-full text-left text-gray-700 text-sm px-3 py-3 rounded-lg hover:bg-[#f0f4fa] transition ${
                   category === cat
                     ? "bg-[#e7f0fd] text-[#1877F2] font-semibold"
@@ -63,7 +64,7 @@ export default function MobileNavbar({
                 }}
               >
                 {cat}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
